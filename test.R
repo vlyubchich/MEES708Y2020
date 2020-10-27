@@ -4,3 +4,5 @@
 plot(1)
 
 plot(123)
+
+library(ggplot2)
