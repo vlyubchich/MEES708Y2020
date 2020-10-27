@@ -5,7 +5,7 @@ plot(1)
 
 plot(123)
 
-<<<<<<< HEAD
+
 library(ggplot2)
 
 write.csv(c(1), "./dataderived/tmp.csv")
