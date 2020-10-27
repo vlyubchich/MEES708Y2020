@@ -8,3 +8,5 @@ plot(123)
 library(ggplot2)
 
 write.csv(c(1), "./dataderived/tmp.csv")
+
+plot(456)
