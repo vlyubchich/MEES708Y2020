@@ -24,7 +24,7 @@ library(gamlss)
 
 library(gamlss.tr)
 ?gamlss.tr
-gen.trun(par = c(100), family = "LOGNO") #dLOGNOtr pLOGNOtr qLOGNOtr rLOGNOtr LOGNOtr
+gen.trun(par = c(0, 100), family = "LOGNO", type = "both") #dLOGNOtr pLOGNOtr qLOGNOtr rLOGNOtr LOGNOtr
 gamlss(y ~ x, family = "LOGNOtr")
 
 #2 Simulate from the model
