@@ -1,17 +1,31 @@
-rm(list=ls())
+rm(list = ls())
 
 ?rnorm
 
-rnorm(10)
+rnorm(10) # X ~ N(0, 1) #N(0, 1) is the standard (mean = 0, variance = 1)
 rnorm(10)
 
 set.seed(123)
 rnorm(10)
 set.seed(123)
+rnorm(15)
 
-#1 Simul. from distrib
-rnorm(10)
+###### 1 Simul. from distrib ######
+?distribution
+rnorm(10, mean = 10)
+tmp = rnorm(100000) + 10
+mean(tmp)
+sd(tmp)
+
 rpois(10, 2)
+
+library(gamlss)
+?gamlss.family
+
+library(gamlss.tr)
+?gamlss.tr
+gen.trun(par = c(100), family = "LOGNO") #dLOGNOtr pLOGNOtr qLOGNOtr rLOGNOtr LOGNOtr
+gamlss(y ~ x, family = "LOGNOtr")
 
 #2 Simulate from the model
 #2.1 Simple linear regression
@@ -75,7 +89,7 @@ sd_xbar <- sd(X)/sqrt(n) #standard deviation of the mean
 
 qnorm(c(0.025, 0.975), mean=xbar, sd=sd_xbar)
 
-xbar + qnorm(c(0.025, 0.975), sd=sd_xbar) 
+xbar + qnorm(c(0.025, 0.975), sd=sd_xbar)
 
 xbar + qnorm(c(0.025, 0.975))*sd_xbar
 
@@ -92,7 +106,7 @@ sample(c(1:5), 3, replace=TRUE) #subsample with replacement -- used in m-out-of-
 sample(c(1:5), replace=T) #resample with replacement -- used in bootstrap
 
 B <- 1000 #number of bootstrap resamples
-#Code1 
+#Code1
 Bmeans <- numeric() #Create an empy vector to store bootstrapped means
 for(b in 1:B){
   Bmeans[b] <- mean(sample(X, replace=TRUE))
