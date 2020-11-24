@@ -4,7 +4,7 @@ library(dplyr)
 #### load data ####
 D <- read.csv("./dataraw/level-2.csv")
 # remove extra columns
-D <- D %>% select(-index, -Full_Name, -Depth, -Cast, -starts_with("Unassign"),)
+D <- D %>% select(-index, -Full_Name, -Depth, -Cast, -starts_with("Unassign"))
 
 #2do: fix names
 
