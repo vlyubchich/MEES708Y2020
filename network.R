@@ -7,6 +7,10 @@ D <- read.csv("./dataraw/level-2.csv")
 D <- D %>% select(-index, -Full_Name, -Depth, -Cast, -starts_with("Unassign"))
 
 #2do: fix names
+tmp <- names(D)
+tmp <- strsplit(tmp, "__")
+tmp <- sapply(tmp, function(x) x[length(x)])
+names(D) <- gsub("\\.", "", tmp) #replace dots with ""
 
 #### correlations ####
 #matrix of pairwise Pearson correlations
@@ -49,6 +53,8 @@ plot(G, vertex.size = 10, edge.width = abs(E(G)$weight)*5,
 
 #### interactive network ####
 Gcluster = cluster_walktrap(G)
+plot(Gcluster, G)
+
 library(networkD3)
 G_D3 = igraph_to_networkD3(G, group = membership(Gcluster)) #
 forceNetwork(Links = G_D3$links, Nodes = G_D3$nodes,
@@ -57,4 +63,7 @@ forceNetwork(Links = G_D3$links, Nodes = G_D3$nodes,
              opacity = 1, fontSize = 16, zoom = FALSE, bounded = TRUE)
 
 #2do: get network statistics (degree distribution, etc.)
+?`igraph-package`
+degree_distribution(G)
+betweenness(G)
 
