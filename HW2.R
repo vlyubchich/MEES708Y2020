@@ -23,3 +23,5 @@ notrend_test(U, B = 1000, test = "WAVK", factor.length = "adaptive.selection")
 #1) do not save all bootstraps
 #2) parallelize, e.g., snowboot::boot_dd
 
+# source your new function and apply system.time to it same as above
+
