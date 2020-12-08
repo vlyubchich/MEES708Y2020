@@ -11,7 +11,10 @@ set.seed(123)
 #### CART ####
 library(rpart)
 fit_cart <- rpart(Examination ~ ., data = swiss)
+fit_cart <- rpart(Examination ~ ., data = swiss,
+                  control = rpart.control(cp = 0.001, minbucket = 3)) #default 0.01
 fit_cart
+plot(fit_cart) #not a good plot, use code below
 
 # The (inverted) tree plot for predicting percentage of draftees receiving highest grade on army examination:
 library(rpart.plot)
@@ -26,6 +29,7 @@ rpart.plot(fit_cart)
 #### using randomForest ####
 library(randomForest)
 fit_rf <- randomForest(Examination ~ ., data = swiss)
+fit_rf <- randomForest(Examination ~ ., data = swiss, mtry = 2, nodesize = 3)
 fit_rf
 plot(fit_rf)
 
@@ -59,6 +63,7 @@ for (i in seq_along(preds)) { #this should work simply with: i in rownames(fit_r
 # Partial dependence plots with plotmo, including interactions
 library(plotmo)
 plotmo(fit_rf, pmethod = "partdep")
+plotmo(fit_rf, pmethod = "partdep", type2 = "contour")
 
 # **Exercise**
 # Use `plotmo` to obtain
@@ -105,6 +110,7 @@ plot(B, horizontal = TRUE,
 
 # **Exercise**
 # Adjust colors of the boxplots in `Boruta` plot.
+# https://github.com/vlyubchich/tilefish
 
 
 #### Clustering ####
